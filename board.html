@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chessir | Home</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.css">
+    <title>Document</title>
 </head>
 <body>
     <header>
@@ -22,14 +23,22 @@
             <a href="board.html">Chess Board</a>
         </nav>
     </header>
+    <!-- Chessboard -->
+    <div id="board" style="width: 400px"></div>
 
-    <div class="heroimg">
-        <div class="hero-text">
-            <h2>Learn Chess. Master Traps. Ragebait Your Friends.</h2>
-            <p>Simple tutorials and sneaky gambits to level up your game.</p>
-        </div>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.js"></script>
+    <script>
+    const game = new Chess();
+    const board = Chessboard('board', {
+        draggable: true,
+        position: 'start',
+        onDrop: (source, target) => {
+        const move = game.move({ from: source, to: target, promotion: 'q' });
+        if (move === null) return 'snapback';
+        }
+    });
+    </script>
     <footer>
         <p>&copy; 2026 Chessir | Nickolas Hawley</p>
     </footer>
